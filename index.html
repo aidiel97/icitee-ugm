@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>JOINT CONFERENCE 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Mengubah background utama menjadi dark gradient */
+            background: linear-gradient(135deg, #121212 0%, #1e1e24 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 40px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            /* Mengubah background kontainer menjadi semi-transparan gelap (Glassmorphism) */
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            /* Menyesuaikan shadow agar tidak terlalu terang */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+        }
+
+        /* Profile Section */
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            /* Mengubah background lingkaran foto agar menyatu dengan dark mode */
+            background: #fff;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(245, 173, 26, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .profile-img img {
+            width: 80%;
+            object-fit: contain;
+        }
+
+        .username {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            /* Mengubah warna teks nama menjadi putih */
+            color: #ffffff;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            /* Mengubah warna teks deskripsi menjadi abu-abu terang */
+            color: #b3b3b3;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* Dynamic Agenda Card Style */
+        .agenda-card {
+            background: linear-gradient(135deg, #B88213, #F5AD1A);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            text-align: left;
+            box-shadow: 0 6px 20px rgba(245, 173, 26, 0.25);
+        }
+
+        .agenda-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            opacity: 0.9;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .agenda-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .agenda-time {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* Buttons / Menu */
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            /* Mengubah tombol menjadi gelap transparan */
+            background: rgba(255, 255, 255, 0.07);
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            text-decoration: none;
+            /* Mengubah warna teks menu menjadi putih */
+            color: #ffffff;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            /* Hover effect dengan sentuhan glow tipis warna emas */
+            box-shadow: 0 4px 15px rgba(245, 173, 26, 0.15);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .menu-item span {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .menu-item2 {
+            background: #fff;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .menu-item2:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: #fcfcfc;
+        }
+
+        .menu-item2 span {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .dots {
+            /* Mengubah warna tiga titik menjadi abu-abu medium */
+            color: #77777a;
+            font-size: 1.2rem;
+        }
+
+        .section-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 25px 0 15px;
+            letter-spacing: 1px;
+            /* Mengubah warna judul bagian menjadi abu-abu terang */
+            color: #a1a1a5;
+        }
+
+        /* Footer */
+        .footer-logos {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            opacity: 0.8;
+        }
+
+        .logo-circle-footer {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Mengubah background logo di footer menjadi gelap */
+            background: #252529;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-circle-footer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* POPUP OVERLAY */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .popup-content {
+            max-width: 90%;
+            max-height: 80vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: none; /* default semua hidden, ditampilkan lewat JS */
+        }
+
+        .popup-content img.active {
+            display: block;
+        }
+
+        .popup-close-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #B88213, #F5AD1A);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(245, 173, 26, 0.3);
+        }
+
+        .popup-nav {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .popup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .popup-dot.active {
+            background: #F5AD1A;
+            border-color: #F5AD1A;
+            transform: scale(1.15);
+        }
+
+        /* PANAH GESER */
+        .popup-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .popup-arrow:hover {
+            background: rgba(245, 173, 26, 0.8);
+        }
+
+        .popup-arrow.prev {
+            left: 10px;
+        }
+
+        .popup-arrow.next {
+            right: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .popup-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="profile-img">
+        <img src="assets/dteti.jpg" alt="DTETI Logo">
+    </div>
+    
+    <div class="username">Capstone 2 2026</div>
+    <div class="description">
+        Departemen Teknik Elektro dan Teknologi Informasi<br>
+        <strong>Fakultas Teknik, Universitas Gadjah Mada</strong>
+    </div>
+    
+    <!-- DYNAMIC AGENDA CARD -->
+    <div class="agenda-card" id="agendaCard" style="display: none;">
+        <div class="agenda-header">
+            <span>Agenda Terdekat</span>
+        </div>
+        <div class="agenda-title" id="agendaTitle">Memuat agenda...</div>
+        <div class="agenda-time" id="agendaTime"><i class="far fa-calendar-alt"></i> -</div>
+    </div>
+    
+    <div class="menu-list">
+        <!-- <a href="" class="menu-item" target="_blank">
+            <span>Informasi Pelaksanaan Ujian Capstone 2</span>
+        </a> -->
+
+        <div class="section-title">Informasi Umum Capstone 2</div>
+        <a href="https://docs.google.com/document/d/1XtIMV4k9NohXupPndeI_ifWkTN9BSeqZ1WLdGilpPgc/edit?usp=sharing" class="menu-item" target="_blank">
+            <span>Pendaftaran Capstone Expo dan Ujian Pendadaran</span>
+        </a>
+
+        <div class="section-title">Formulir Capstone 2</div>
+        <a href="https://sms.ft.ugm.ac.id" class="menu-item" target="_blank">
+            <span>Pengajuan Dana Bantuan Capstone</span>
+        </a>
+
+        <div class="section-title">Dokumen & Template</div>
+        <a href="https://docs.google.com/document/d/1LKby-JDGwb_Umc-d8MSRIPErZM79TRbm/edit?usp=sharing" class="menu-item" target="_blank">
+            <span>Template Form Persetujuan Capstone Expo</span>
+        </a>
+        
+        <div class="section-title">Frequently Ask Question</div>
+
+        <a href="https://docs.google.com/document/d/1NE7fbH1DL_CS9Rg2QWw0JtF8ngfmtf3RXRMEAVDecUY/edit?usp=sharing" class="menu-item" target="_blank">
+            <span>FAQ</span>
+        </a>
+        <a href="" class="menu-item" target="_blank">
+            <span>Ask Us: capstone-dteti.ft@ugm.ac.id</span>
+            <div class="dots">✉️</div>
+        </a>
+
+    </div>
+
+    <div class="footer-logos">
+        <div class="logo-circle-footer">
+            <img src="assets/ugm.jpg" alt="UGM Logo">
+        </div>
+    </div>
+</div>
+</body>
+</html>
